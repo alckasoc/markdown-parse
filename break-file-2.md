@@ -1,2 +1,2 @@
-![Image](image.jpg)
-![Link](breakinator.com)
+link](asdfafsdfadf)
+[link](bruh)

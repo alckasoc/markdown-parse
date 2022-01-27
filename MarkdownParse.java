@@ -10,23 +10,33 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then take up to
         // the next )
         int currentIndex = 0;
+
+
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
-            if (closeParen > -1) {
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
+            if (nextOpenBracket != 0 && markdown.substring(nextOpenBracket -1, nextOpenBracket).equals("!")) {
                 currentIndex = closeParen + 1;
-            } else {
-                currentIndex = markdown.indexOf("\n", openParen) + 1;
+            }
+            else {
+                if (closeParen > -1) {
+                    toReturn.add(markdown.substring(openParen + 1, closeParen));
+                    currentIndex = closeParen + 1;
+                }
+                else {
+                    currentIndex = markdown.indexOf("\n", openParen) + 1;
+                }
                 if (currentIndex == 0) {
                     break;
                 }
             }
-        }
-        return toReturn;
+            }
+            
+        return toReturn; 
     }
+
     public static void main(String[] args) throws IOException {
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
