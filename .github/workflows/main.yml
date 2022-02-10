@@ -29,5 +29,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo The directory is: $GITHUB_WORKSPACE
-          javac -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar MarkdownParseTest.java MarkdownParse.java
-          java -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore MarkdownParseTest
+          make test
